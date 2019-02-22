@@ -1,0 +1,44 @@
+	<h2> Fill in your info </h2>
+<br>
+
+<%= form_for @listing do |f| %>
+	Gender: <br>
+
+
+
+	<input type="radio" name="gender" value="Male"> Male
+	<input type="radio" name="gender" value="Female"> Female 
+	<br>
+	<br>
+
+	Birthday:<br>
+	<input type="date" name="bday">
+	<br>
+	<br>
+
+	 Select Country<br> <select name="country">
+	    <option value="None selected">Please select below</option>
+	    <option value="Malaysia">Malaysia</option> <option value="Singapore">Singapore</option><option value="Others">Others</option>	 etc.
+	</select>
+	<br>
+	<br>
+	
+	Current City: <br>
+	<input type="text" name="city" value="">
+	<br>
+	<br>
+	  Rate per hour in USD:<br>
+	   <input type="number" name="rate" value=""> 
+	   <br>
+	   <br>
+	 
+	  Description: <br> <textarea name="description" rows="3" maxlength="200" cols="60"></textarea>
+	  <br>
+	  <br>
+	Select Photo <br> <%= f.file_field :photos, multiple: true %>
+	  <br>
+	  <br>
+   <input type="submit" value=" Submit ">
+	<br>
+	<br>
+<% end %>

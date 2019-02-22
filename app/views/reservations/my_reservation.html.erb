@@ -1,0 +1,33 @@
+<br>
+<br>
+<table>
+
+	<tr>
+		<th> Number </th>
+		<th> Name <th>
+		<th> Start Date and Time </th>
+		<th> End Date and Time</th>
+		<th> Comments</th>
+		<th> Price Per Hour</th>
+		<th> Number of Hours Reserved</th>
+		<th> Total price </th>
+		<th> Action </th>
+	</tr>
+
+	<% @reservation.each_with_index do|reservation, number| %>
+		<tr> 	
+			<td> <%= number + 1 %>
+			<td> <a href="/listings/<%= reservation.listing_id %>/info"> <%= reservation.name_of_user %></a> </td> 
+			<td> <%= reservation.start_date_and_time %></td>
+			<td> <%= reservation.end_date_and_time %></td>
+			<td> <%= reservation.comments%>	</td>
+			<td> <%= reservation.price_per_hours%></td>
+			<td> <%= reservation.num_of_hours%></td>
+			<td> <%= reservation.total_price %></td>
+			<td><%= link_to "Cancel Reservation", listing_reservation_path(reservation.listing,reservation), method: :delete , data: { confirm: 'Sure ah?'}  %></td>
+		</tr>
+<% end %>
+</table>
+
+
+

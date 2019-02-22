@@ -1,0 +1,75 @@
+<section class="container">
+    <div class="page-header">
+        <h1>All Boys<br>
+         <!--  <small>See full features on <a href="https://github.com/marlenesco/material-cards" target="_blank">Github</a></small></h1> -->
+    </div>
+<% if @listings.empty? %>
+  <h4>The list is currently empty. Earn some extra dollar by listing yourslef <a href="/listings/new">here!</a></h4>
+<% else %>
+    <% @listings.each do |boys| %>
+    <div class="row active-with-click">
+        <div class="col-md-4 col-sm-6 col-xs-12">
+            <article class="material-card Red">
+                <h2>
+                   <a href="/listings/<%= boys.id %>/info"><%= boys.user.name%></a>
+                    <strong>
+                        <i class="fa fa-fw fa-star"></i> 
+                        <%= boys.rate %> usd/hour, <%=boys.today_age %> Years Old
+                    </strong>
+                </h2>
+                <div class="mc-content">
+                    <div class="img-container">
+                        <div class="image-div container">
+
+                      <% if boys.photos?%>b.
+                        <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                          <!-- Indicators -->
+                          <ol class="carousel-indicators">
+                            <%for i in 0..boys.photos.count - 1 %>
+                              <li data-target="#myCarousel" data-slide-to="<%=i%>"></li>
+                              <%end%>
+                          </ol>
+
+                          <!-- Wrapper for slides -->
+                          <div class="carousel-inner" role="listbox">
+                            <% boys.photos.each_with_index do |photo, index|%>
+                              <div class="item <%= 'active' if index == 0%>">
+                                <%= image_tag (photo.large.url) %>
+                              </div>
+                              <%end%>
+                          </div>
+                          <!-- Left and right controls -->
+                          <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+                            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                          </a>
+
+                          <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+                            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                          </a>
+                        </div>
+                     <%end%>
+                    </div>
+                       <!--  <img class="img-responsive" src="http://u.lorenzoferrara.net/marlenesco/material-card/thumb-christopher-walken.jpg"> -->
+                    </div>
+                </div>
+                   <div class="mc-description">
+                        <%= boys.description %>
+                    </div>
+                <a class="mc-btn-action">
+                    <i class="fa fa-bars"></i>
+                </a>
+                <div class="mc-footer">
+          
+                    <a class="fa fa-fw fa-facebook"></a>
+                    <a class="fa fa-fw fa-twitter"></a>
+                    <a class="fa fa-fw fa-linkedin"></a>
+                    <a class="fa fa-fw fa-google-plus"></a>
+                </div>
+            </article>
+        </div>
+<% end %>
+<% end %>
+
+        

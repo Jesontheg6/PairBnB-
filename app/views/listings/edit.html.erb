@@ -1,0 +1,46 @@
+	<h2> Edit your info </h2>
+<br>
+
+<%= form_for @listing do |f| %>
+	Gender: <br>
+
+
+	<%= f.radio_button :gender, 'Male' %>Male
+	<%= f.radio_button :gender, 'Female' %>Female
+	<br>
+	<br>
+
+	Birthday:<br>
+	<%= f.date_field :bday, value: @listing.bday.to_s %>
+	<br>
+	<br>
+
+	 Select Country<br> 
+	 <%= f.select :country, ['Malaysia', 'Singapore', 'Others'].map {|name| [name] * 2} %>
+
+	<br>
+	<br>
+	
+	Current City: <br>
+	<%= f.text_field :city %>
+	<br>
+	<br>
+	  Rate per hour in USD:<br>
+	  <%= f.number_field :rate %>
+	   <br>
+	   <br>
+	 
+	  Description: <br> 
+	  <%= f.text_area :description, row: 3, maxlength: 200, cols: 60 %>
+	  <br>
+	  <br>
+	Select Photo <br> <%= f.file_field :photos, multiple: true %>
+	  <br>
+	  <br>
+	 <%= link_to "Delete this list", "/listings/#{@listing.id}" , method: :delete,:data => {:confirm => "You Sure?"} %>
+	 <br>
+	 <br>
+   <input type="submit" value=" Submit ">
+	<br>
+	<br>
+<% end %>

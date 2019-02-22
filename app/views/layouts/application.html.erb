@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Pairbnb</title>
+
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+  
+  <!-- Load the Client component. -->
+  <script src="https://js.braintreegateway.com/web/3.6.3/js/client.min.js"></script>
+
+  <!-- Load the Hosted Fields component. -->
+  <script src="https://js.braintreegateway.com/web/3.6.3/js/hosted-fields.min.js"></script>
+
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<%= render partial: "layouts/navbar" %>
+<div class="container">
+
+    <div id="flash">
+      <% flash.each do |key, value| %>
+        <div class="flash <%= key %>"><%= value %></div>
+      <% end %>
+    </div>
+
+  <%= yield %>
+</div>
+<div class="pusher"></div>
+<div id="footer">
+  <ul>
+    <li>Team</li>
+    <li>Privacy</li>
+    <li>Terms</li>
+    <li>Contact Us</li>
+    <li>Signup for newsletter</li>
+  </ul>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,40 @@
+
+<h1> More about <%= @listing.user.name %> </h1> 
+<br>
+
+<form align="right" class="reserve_button" method="get" action="/listings/<%=@listing.id%>/reservations/new">
+    <button type="submit">Reserve</button>
+</form>
+
+<h4 align="left"> Age: </h4>
+<%= @listing.today_age%> years old
+<br></br>
+
+<h4 align="left"> Rate: </h4>
+<%= @listing.rate%> usd/hour
+<br></br>
+
+<h4 align="left"> Description: </h4>
+<%= @listing.description%>
+<br></br>
+
+<h4 align="left"> gender: </h4>
+<%= @listing.gender%>
+<br></br>
+
+<h4 align="left"> Country: </h4>
+<%= @listing.country%>
+<br></br>
+
+<h4 align="left"> City: </h4>
+<%= @listing.city%>
+<br></br>
+
+<h4 align="left"> Birthday: </h4>
+<%= @listing.bday%>
+<br></br>
+
+<h4 align="left"> All photos: </h4>
+<%= @listing.user.photos%>
+<br></br>
+

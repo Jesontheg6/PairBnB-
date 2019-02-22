@@ -1,0 +1,93 @@
+
+	<h2 align="center"> Welcome <%= current_user.name %> to Pairbnb</h2>
+
+
+<form align="right" class="list_button" method="get" action="/listings/new">
+    <button type="submit">List</button>
+</form>
+<br>
+<form align="right" class="my_reservation_button" method="get" action= "/listings/:listing_id/reservations/:id/my_reservation">
+    <button type="submit">My Reservation</button>
+</form>
+
+  <div class="page-header">
+        <h2>Here's Your Listing</h2>
+
+    </div>
+    <br>
+   <% if current_user.listings.empty? %>
+  <h4>You have not posted any listings. Earn some extra dollar by listing yourself <a href="/listings/new">Here!</a></h4>
+<% else %>
+<% current_user.listings.each do |profile| %>
+    <div class="row active-with-click">
+        <div class="col-md-4 col-sm-6 col-xs-12">
+            <article class="material-card Red">
+                <h2>
+                    <%= current_user.name%>
+                    <strong>
+                        <i class="fa fa-fw fa-star"></i> 
+                        <%= profile.rate %> , <%=profile.today_age %>
+                    </strong>
+                   <form align="right" class="edit_button" method="get" action="/listings/<%= profile.id %>/edit">
+                     <button type="submit">Edit</button>
+                 </form>
+                </h2>
+                <div class="mc-content">
+                    <div class="img-container">
+                        <div class="image-div container">
+
+                      <% if profile.photos?%>
+                        <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                          <!-- Indicators -->
+                          <ol class="carousel-indicators">
+                            <%for i in 0..profile.photos.count - 1 %>
+                              <li data-target="#myCarousel" data-slide-to="<%=i%>"></li>
+                              <%end%>
+                          </ol>
+
+                          <!-- Wrapper for slides -->
+                          <div class="carousel-inner" role="listbox">
+                            <% profile.photos.each_with_index do |photo, index|%>
+                              <div class="item <%= 'active' if index == 0%>">
+                                <%= image_tag (photo.large.url) %>
+                              </div>
+                              <%end%>
+                          </div>
+                          <!-- Left and right controls -->
+                          <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+                            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                          </a>
+
+                          <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+                            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                          </a>
+                        </div>
+                     <%end%>
+                    </div>
+                       <!--  <img class="img-responsive" src="http://u.lorenzoferrara.net/marlenesco/material-card/thumb-christopher-walken.jpg"> -->
+                    </div>
+                </div>
+                   <div class="mc-description">
+                        <%= profile.description %>
+                    </div>
+                <a class="mc-btn-action">
+                    <i class="fa fa-bars"></i>
+                </a>
+                <div class="mc-footer">
+          
+                    <a class="fa fa-fw fa-facebook"></a>
+                    <a class="fa fa-fw fa-twitter"></a>
+                    <a class="fa fa-fw fa-linkedin"></a>
+                    <a class="fa fa-fw fa-google-plus"></a>
+                </div>
+            </article>
+        </div>
+        <% end %>
+        <% end %>
+
+
+
+
+<br></br>
